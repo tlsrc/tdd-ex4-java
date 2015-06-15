@@ -21,7 +21,7 @@ public class OrderTest {
         order.AddProduct(product);
 
         product.setPrice(discountedPrice);
-        Assert.assertEquals(regularPrice, order.GetTotalPrice());
+        Assert.assertEquals(regularPrice, order.GetTotalPrice(), 0.001);
 	}
 	
 	@Test
@@ -31,7 +31,7 @@ public class OrderTest {
         order.AddProduct(Keyboard());
 
         float expectedTotal = Mouse().getPrice() * 2 + Keyboard().getPrice();
-        Assert.assertEquals(expectedTotal, order.GetTotalPrice());
+        Assert.assertEquals(expectedTotal, order.GetTotalPrice(),0.001);
 	}
 
 	@Test
@@ -40,7 +40,7 @@ public class OrderTest {
     	order.AddProduct(newRelease);
 
     	float expectedTotal = newRelease.getPrice() * .9F;
-    	Assert.assertEquals(expectedTotal, order.GetTotalPrice());
+    	Assert.assertEquals(expectedTotal, order.GetTotalPrice(),0.001);
 	}
 
 	@Test
@@ -50,9 +50,10 @@ public class OrderTest {
     	order.AddProduct(discounted);
 
     	float expectedTotal = (discounted.getPrice() - 5 ) * 2;
-    	Assert.assertEquals(expectedTotal, order.GetTotalPrice());
+    	Assert.assertEquals(expectedTotal, order.GetTotalPrice(),0.001);
 	}
 
+	@Test
 	public void testPrintsBillingAndShippingAddressOnShippingSlip() {
         order.SetShippingAddress("John Doe", "456 West Street", "New-York", "60750");
         order.SetBillingAddress("John Doe", "123 East Street", "New-York", "60570");
@@ -74,7 +75,7 @@ public class OrderTest {
                 "\n" +
                 "Details:\n" +
                 "\n" +
-                "Total = 0\n" +
+                "Total = 0.0\n" +
                 "\n" +
                 "*************\n" +
                 "Thank You!\n" +
@@ -99,10 +100,10 @@ public class OrderTest {
                 "Bill To:\n" +
                 "\n" +
                 "Details:\n" +
-                "Mouse x 2 = 59\n" +
-                "Keyboard x 1 = 60\n" +
+                "Mouse x 2 = 59.0\n" +
+                "Keyboard x 1 = 60.0\n" +
                 "\n" +
-                "Total = 119\n" +
+                "Total = 119.0\n" +
                 "\n" +
                 "*************\n" +
                 "Thank You!\n" +
